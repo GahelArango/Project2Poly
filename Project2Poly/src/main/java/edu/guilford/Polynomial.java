@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Polynomial implements Comparable<Polynomial>{
- private double[] coefficients;
+    private double[] coefficients;
     private int degree;
 
    // Create a default constructor
@@ -104,38 +104,26 @@ public class Polynomial implements Comparable<Polynomial>{
         return new Polynomial(resultCoefficients);
     }
 
-    // Write a CompareTo method
+    // Write a compareTo method in which comparison for the degree works as well as inner conditional statements that evaluate the polynomials at two values. And that should be after both comparisons of the polyomial degrees. Add if and else-if construction to check if one is greater than the other, then use the else block to do evaluation work
+
     @Override
-    public int compareTo(Polynomial otherPolynomial) {
-        if (this.degree == otherPolynomial.degree) {
-            // Check if coefficients are the same
-            for (int i = 0; i <= this.degree; i++) {
-                if (this.coefficients[i] != otherPolynomial.coefficients[i]) {
-                    // Compare values at x=1
-                    if (this.evaluate(1) > otherPolynomial.evaluate(1)) {
-                        return 1;
-                    } else if (this.evaluate(1) < otherPolynomial.evaluate(1)) {
-                        return -1;
-                    }
-    
-                    // If values at x=1 are equal, compare values at x=2
-                    if (this.evaluate(2) > otherPolynomial.evaluate(2)) {
-                        return 1;
-                    } else if (this.evaluate(2) < otherPolynomial.evaluate(2)) {
-                        return -1;
-                    }
-    
-                    return 0; // The polynomials are equal in all coefficients and values
-                }
-            }
-        } else if (this.degree > otherPolynomial.degree) {
+    public int compareTo(Polynomial p) {
+        if (this.degree > p.getDegree()) {
             return 1;
-        } else {
+        } else if (this.degree < p.getDegree()) {
             return -1;
+        } else {
+            double result1 = this.evaluate(1.0);
+            double result2 = p.evaluate(1.0);
+            if (result1 > result2) {
+                return 1;
+            } else if (result1 < result2) {
+                return -1;
+            }
         }
-    
-        return 0; // The polynomials are equal in all coefficients and values
+        return 0;
     }
+    
 
     // Write a ToString method
     @Override
@@ -156,6 +144,7 @@ public class Polynomial implements Comparable<Polynomial>{
         }
         return sb.toString();
     }
+
 
     
 }
