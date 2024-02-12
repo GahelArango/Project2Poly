@@ -104,8 +104,7 @@ public class Polynomial implements Comparable<Polynomial>{
         return new Polynomial(resultCoefficients);
     }
 
-    // Write a compareTo method in which comparison for the degree works as well as inner conditional statements that evaluate the polynomials at two values. And that should be after both comparisons of the polyomial degrees. Add if and else-if construction to check if one is greater than the other, then use the else block to do evaluation work
-
+    // Write a compareTo method
     @Override
     public int compareTo(Polynomial p) {
         if (this.degree > p.getDegree()) {
